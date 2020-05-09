@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>峰客</title>
+    <link rel="shortcut icon" href="/img/favicon.ico" >
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a class="title" href="">我的个人博客 | 技术博客</a>
+            <ul class="menu">
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="./sitemp.html">地图</a></li>
+                <li><a href="./about.html">关于</a></li>
+                <li><a href="./guestbook.html">留言</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="输入关键词查找">
+                <button class="btn">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg">
+        <div class="headpic">
+            <a href="./about.html"><img src="./img/head.jpg"></a>
+            <p>Be Yourself</p>
+            <p>Nerver give up like a fire</p>
+        </div>
+        <div class="blr left-bg"></div>
+        <div class="blr right-bg"></div>
+    </div>
+
+    <div class="content">
+        <div class="content-left">
+            <div class="every-day" id="every-day">
+                <span>每日一句</span>
+                <p v-html="getContent"></p>
+            </div>
+            <div class="article-list" id="article-list">
+                <div class="article" v-for="(key, index) in articles" :key="index">
+                    <a :href="key.link" class="article-title">{{key.title}}</a>
+                    <p class="article-content">{{key.content}}</p>
+                    <div class="article-foot">浏览（{{key.views}}）发表于： {{key.date}}</div>
+                </div>
+                <div class="page-tool">
+                    <ul>
+                        <div @click="changePage(page - 1)" v-if="page > 1">&lt;</div>
+                        <li v-for="key in pageCount" @click="changePage(key)" :class="{'curPage': (key == page)}">{{key}}</li>
+                        <div @click="changePage(page + 1)" v-if="page < pageCount">&gt;</div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="right-moudle" id="random-tags">
+                <div>随机标签</div>
+                <a :href="'?tag=' + key" v-for="(key,index) in tagList" :style="{color: randomColor(), fontSize: randomSize()}">{{key}}</a>
+            </div>
+            <div class="right-moudle" id="new-hot">
+                <div>最近热门</div>
+                <ul>
+                    <li v-for="(key, index) in newsList" ::key="index"><a :href="key.link">{{key.title}}</a></li>
+                </ul>
+            </div>
+            <div class="right-moudle" id="new-comments">
+                <div>最近评论</div>
+                <ul v-for="(key, index) in commentsList" :key="index">
+                    <li>
+                        <div>
+                            <span>{{key.user}}</span>
+                            <span class="pull-right">{{key.date}}</span>
+                        </div>
+                        <p>{{key.content}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="right-moudle">
+                <div>友情链接</div>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright © 2020 by Jensonhui's blog . All rights reserved. | Theme: Akina For Typecho.</p>
+        <p>备案号：121</p>
+    </footer>
+
+
+    <script src="./js/index.js"></script>
+    <script src="./js/base.js"></script>
+</body>
+</html>

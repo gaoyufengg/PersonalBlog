@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    /* background-image: url('../img/headerbg.jpg'); */
+    position: relative;
+    text-align: center;
+    /* height: 2000px; */
+    background-color: #E9EAED;
+}
+.header{
+    width: 100%;
+    height: 80px;
+    background-color: transparent;
+    position: absolute;
+    z-index: 1;
+}
+.bg{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    top: 0;
+    background-image: url('../img/timg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.blr{
+    width: 0;
+    height: 0;
+    border-width: 50px 500px;
+    border-style: solid;
+    position: absolute;
+    top: 300px;
+}
+.left-bg{
+    left: 0;
+    border-left-color: #E9EAED;
+    border-bottom-color: #E9EAED;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+.right-bg{
+    right: 0;
+    border-right-color: #E9EAED;
+    border-bottom-color: #E9EAED;
+    border-left-color: transparent;
+    border-top-color: transparent;
+}
+
+.bg .headpic{
+    position: absolute;
+    left: calc(50% - 200px);
+    top: 120px;
+    width: 400px;
+    height: 200px;
+    text-align: center;
+    /* z-index: 2; */
+}
+.bg .headpic a{
+    display: block;
+}
+.bg .headpic a img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /* position: absolute; */
+}
+.bg .headpic p{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+.container{
+    width: 1170px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+}
+.container .title{
+    color: #000;
+    float: left;
+    line-height: 80px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.container .menu{
+    float: left;
+    height: 80px;
+    margin-left: 350px;
+}
+.container .menu li{
+    float: left;
+    height: 80px;
+    width: 58px;
+    text-align: center;
+    line-height: 80px;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.container .menu li a{
+    color: #fff;
+}
+.container .menu li a:hover{
+    color: #000;
+}
+
+.container .search-bar input{
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 2px 10px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    margin-top: -14px;
+}
+.container .search-bar .btn{
+    width: 54px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 5px;
+    border: 0px;
+    position: absolute;
+    top:50%;
+    margin-top: -13px;
+    right: 0px;
+    color: #fff;
+    background-color: #000;
+}
+
+
+.content{
+    position: relative;
+    width: 1170px;
+    height: 1650px;
+    margin: 100px auto 0 auto;
+}
+
+.content-left {
+    float: left;
+    width: 66%;
+    padding: 0 20px 0 0;
+    box-sizing: border-box;
+}
+
+.content-right{
+    float: left;
+    width: 30%;
+    margin-left: 30px;
+}
+
+
+footer{
+    float: left;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    color: #9c9c9c;
+    /* line-height: 100px; */
+    position: relative;
+}
+footer div{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+}
+
+
+.right-moudle{
+    width: 100%;
+    background-color: #13102b;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0px 15px 25px 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.right-moudle div{
+    text-align: left;
+    font-size: 14px;
+    padding: 15px 5px 15px 0px;
+    color: #fff;
+}
+.right-moudle > a{
+    display: inline-block;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.right-moudle ul li{
+    color: #fff;
+    padding: 8px 0px;
+    border-bottom: 1px solid #292929
+}
+.right-moudle ul li a{
+    font-size: 14px;
+    color: #fff;
+}
+.right-moudle ul li div{
+    padding: 5px 0;
+}
+.right-moudle ul li div span{
+    font-size: 14px;
+    color: #fff;
+}
+
+.right-moudle ul li p{
+    font-size: 14px;
+    color: #777;
+}
+
+.pull-right{
+    position: absolute;
+    right: 15px;
+}
+
+.right-moudle > span{
+    display: inline-block;
+    width: 49%;
+    height: 30px;
+    margin-top: 10px
+}
+.right-moudle > span > a {
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+}

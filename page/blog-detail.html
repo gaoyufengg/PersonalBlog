@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="/img/favicon.ico" >
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/blog-detail.css">
+    <link rel="stylesheet" href="./css/comment.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a class="title" href="">我的个人博客 | 技术博客</a>
+            <ul class="menu">
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="./sitemp.html">地图</a></li>
+                <li><a href="./about.html">关于</a></li>
+                <li><a href="./guestbook.html">留言</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="输入关键词查找">
+                <button class="btn">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg">
+        <div class="headpic">
+            <a href="./about.html"><img src="./img/head.jpg"></a>
+            <p>Be Yourself</p>
+            <p>Nerver give up like a fire</p>
+        </div>
+        <div class="blr left-bg"></div>
+        <div class="blr right-bg"></div>
+    </div>
+
+    <div class="content">
+        <div class="content-left">
+            <div class="blog" id="blog-detail">
+                <div class="blog-title">{{title}}</div>
+                <div class="blog-msg">作者：Doer 标签：{{tags}} 发布于: {{ctime}} 浏览: {{views}}</div>
+                <div class="blog-content" v-html="content"></div>
+            </div>
+
+            <div id="send-comments" class="send-comments">
+                <div class="comment-report">
+                    <input type="hidden" id="reply" value="-1">
+                    <input type="hidden" id="reply-name" value="0">
+                    <input type="text" v-model="name" placeholder="尊姓大名" id="comment-name">
+                    <input type="email" v-model="email" placeholder="邮箱" id="comment-email">
+                    <textarea name="text" v-model="comment" id="comment-content" class="comment-write" cols="30" rows="10" placeholder="老铁，秀秀你的嘴皮子"></textarea>
+                    <div>
+                        <input type="text" v-model="commentCode" placeholder="验证码" id="comment-code">
+                        <span v-html="vcode" @click="changeCode"></span>
+                    </div>
+                    <button @click="sendComment()">手留余香</button>  
+                </div>
+
+                <div class="blog-comments" id="blog-comments" >
+                    <h2 class="blog-commtents-msg">当前文章： 目前有{{total}}条留言</h2>        
+                    <div class="comment" v-for="key in comments" v-if="key.parent == -1">
+                        <div class="comment-title">
+                            <h4>{{key.user_name}}</h4>
+                            <span><a href="#send-comments" @click="reply(key.id, key.user_name)">[回复]</a></span>
+                            <span>{{key.ctime}}</span>
+                        </div>
+                        <div class="comment-content">{{key.comments}}</div>
+                        <div class="comment-reply" v-for="item in comments" v-if="key.id == item.parent">
+                            <div class="comment-title">
+                                <h4>{{item.user_name}} {{item.option}}</h4>
+                                <span><a href="#send-comments" onclick="reply(item.id, item.user_name)">[回复]</a></span>
+                                <span>{{item.ctime}}</span>
+                            </div>
+                            <div class="comment-content">{{item.comments}}</div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+            
+        </div>
+        <div class="content-right">
+            <div class="right-moudle" id="random-tags">
+                <div>随机标签</div>
+                <a href="#" v-for="(key,index) in tagList" :style="{color: randomColor(), fontSize: randomSize()}">{{key}}</a>
+            </div>
+            <div class="right-moudle" id="new-hot">
+                <div>最近热门</div>
+                <ul>
+                    <li v-for="(key, index) in newsList" ::key="index"><a :href="key.link">{{key.title}}</a></li>
+                </ul>
+            </div>
+            <div class="right-moudle" id="new-comments">
+                <div>最近评论</div>
+                <ul v-for="(key, index) in commentsList" :key="index">
+                    <li>
+                        <div>
+                            <span>{{key.user}}</span>
+                            <span class="pull-right">{{key.date}}</span>
+                        </div>
+                        <p>{{key.content}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="right-moudle">
+                <div>友情链接</div>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+                <span><a href="/">发动机</a></span>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div>
+            <p>Copyright © 2020 by Jensonhui's blog . All rights reserved. | Theme: Akina For Typecho.</p>
+            <p>备案号：121</p>
+        </div>
+    </footer>
+
+
+    <script src="./js/blog-detail2.js"></script>
+    <script src="./js/base.js"></script>
+    <script src="./js/comment.js"></script>
+</body>
+</html>

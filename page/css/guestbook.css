@@ -1,0 +1,62 @@
+.right-moudle{
+    width: 100%;
+    background-color: #13102b;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0px 15px 25px 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.right-moudle div{
+    text-align: left;
+    font-size: 14px;
+    padding: 15px 5px 15px 0px;
+    color: #fff;
+}
+.right-moudle > a{
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    color: #f40;
+}
+.right-moudle ul li{
+    color: #fff;
+    padding: 8px 0px;
+    border-bottom: 1px solid #292929
+}
+.right-moudle ul li a{
+    font-size: 14px;
+    color: #fff;
+}
+.right-moudle ul li div{
+    padding: 5px 0;
+}
+.right-moudle ul li div span{
+    font-size: 14px;
+    color: #fff;
+}
+
+.right-moudle ul li p{
+    font-size: 14px;
+    color: #777;
+}
+
+.pull-right{
+    position: absolute;
+    right: 15px;
+}
+
+.right-moudle > span{
+    display: inline-block;
+    width: 49%;
+    height: 30px;
+    margin-top: 10px
+}
+.right-moudle > span > a {
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+
+

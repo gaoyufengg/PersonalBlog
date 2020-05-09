@@ -1,0 +1,96 @@
+
+.every-day{
+    background-color: #fff;
+    width: 100%;
+    /* text-align: left; */
+    border-radius: 5px;
+    box-shadow: 3px 4px 3px #ccc;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    line-height: 25px;
+    margin-bottom: 80px;
+}
+
+.article-list{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.article{
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    /* box-shadow: 3px 3px 3px 3px #ccc inset; */
+    overflow: hidden;
+    text-align: center;
+    padding: 20px 20px;
+    float: left;
+    text-align: left;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    transition: box-shadow 0.3s linear;
+}
+.article:hover{
+    box-shadow: 4px 6px 5px 8px #ccc;
+}
+
+.article-title{
+    padding: 0 10px;
+    font-weight: 600;
+    color: #737373;
+    font-size: 20px;
+}
+.article-title:hover{
+    color: #8fd0cc;
+}
+.article-content{
+    line-height: 25px;
+    font-size: 15px;
+    color: #6f6f6f;
+    padding: 20px 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-align: left;
+}
+
+.article-foot{
+    color: #000;
+    font-size: 14px;
+    padding: 5px 10px;
+    text-align: right;
+}
+
+.page-tool{
+    margin-top: 30px;
+    display: inline-block;
+}
+.page-tool ul li, 
+.page-tool ul div{
+    display: inline-block;
+    width: 40px;
+    height: 30px;
+    background-color: lavender;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #bbb;
+    cursor: pointer;
+}
+.page-tool ul li:hover,
+.page-tool ul div:hover{
+    background-color: #eee;
+}
+.page-tool ul li.curPage{
+    background-color: lightseagreen;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
