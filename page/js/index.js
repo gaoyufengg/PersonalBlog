@@ -30,20 +30,13 @@ var articleList = new Vue({
         pageSize: '5',
         count: '',
         pageCount: '',
-        articles: [{
-            title: '﹝TOP﹞Git常用命令总结',
-            content: '带回家双方均按时考虑到的递四方速递发顺丰好时机第三方士大夫胜多负少开发环境肯定是飞机扣水电费父级克隆上点击风口浪尖是否能水电费is你打开', 
-            date: '2020-10-21',
-            views: '101',
-            id: '1',
-            link: ''
-        }]
+        articles: [{title: '',content: '', date: '',views: '',id: '1',link: ''}]
     },
 
     created () {
         this.getBlog(this.page, this.pageSize);
-
     },
+
     computed: {
         // 获取blog
         getBlog () {
@@ -62,23 +55,8 @@ var articleList = new Vue({
                         url: '/queryBlogByPage?page=' + (page - 1) + '&pageSize=' + pageSize,
                         method: 'get'
                     }).then((res) => {
-                        // console.log(res)
-                        var list = [];
-                        var data = res.data.data
-                        data.forEach(function(el, index){
-                            var date = new Date(el.ctime * 1000)
-                            var currentTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
-                            var temp = {};
-                            temp.title = el.title;
-                            temp.content = el.content;
-                            temp.date = currentTime;
-                            temp.views = el.views;
-                            temp.id = el.id;
-                            temp.link = '/blog-detail.html?bid=' + el.id;
-                            list.push(temp)
-                        });
-                        articleList.articles = list;
-                        articleList.getpageCount();
+                        this.doReslut(res)
+                        this.getpageCount();
                     }).catch(err => {
                         console.log(err)
                     })
@@ -87,23 +65,8 @@ var articleList = new Vue({
                         url: '/queryeByTag?page=' + (page - 1) + '&pageSize=' + pageSize + '&tag=' + tag,
                         method: 'get'
                     }).then((res) => {
-                        // console.log(res)
-                        var list = [];
-                        var data = res.data.data
-                        data.forEach(function(el, index){
-                            var temp = {};
-                            var date = new Date(el.ctime * 1000)
-                            var currentTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
-                            temp.date = currentTime;
-                            temp.title = el.title;
-                            temp.content = el.content;
-                            temp.views = el.views;
-                            temp.id = el.id;
-                            temp.link = '/blog-detail.html?bid=' + el.id;
-                            list.push(temp)
-                        });
-                        articleList.articles = list;
-                        articleList.queryeByTagCount(tag);
+                        this.doReslut(res)
+                        this.queryeByTagCount(tag);
                     }).catch(err => {
                         console.log(err)
                     })
@@ -113,7 +76,27 @@ var articleList = new Vue({
         },
 
     },
+
     methods: {
+        // 处理res
+        doReslut(res){
+            var list = [];
+            var data = res.data.data
+            data.forEach(function(el, index){
+                var date = new Date(el.ctime * 1000)
+                var currentTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
+                var temp = {};
+                temp.title = el.title;
+                temp.content = el.content;
+                temp.date = currentTime;
+                temp.views = el.views;
+                temp.id = el.id;
+                temp.link = '/blog-detail.html?bid=' + el.id;
+                list.push(temp)
+            });
+            this.articles = list;
+
+        },
         // 获取所有blog的数量，并算出页数
         getpageCount(){
             axios({
@@ -123,7 +106,6 @@ var articleList = new Vue({
                 // console.log(res)
                 var data = res.data.data;
                 var count = data.length;
-                console.log(count)
                 result = Math.ceil(count / articleList.pageSize);
                 articleList.pageCount = result;
             }).catch(err => {
@@ -131,25 +113,23 @@ var articleList = new Vue({
             })
             
         },
-        changePage(page){
-            this.page = page;
-            this.getBlog(this.page, this.pageSize)
-        },
         // 获取该tag关联的blog的数量，并算出页数
         queryeByTagCount(tag){
             axios({
                 url: '/queryeByTagCount?tag=' + tag,
                 method: 'get'
             }).then((res) => {
-                // console.log(res)
                 var data = res.data.data;
                 var count = data.length;
-                console.log(count)
                 result = Math.ceil(count / articleList.pageSize);
                 articleList.pageCount = result;
             }).catch(err => {
                 console.log(err)
             })
-        }
+        },
+        changePage(page){
+            this.page = page;
+            this.getBlog(this.page, this.pageSize)
+        },
     }
 });
