@@ -49,8 +49,6 @@
 
             <div id="send-comments" class="send-comments">
                 <div class="comment-report">
-                    <input type="hidden" id="reply" value="-1">
-                    <input type="hidden" id="reply-name" value="0">
                     <input type="text" v-model="name" placeholder="尊姓大名" id="comment-name">
                     <input type="email" v-model="email" placeholder="邮箱" id="comment-email">
                     <textarea name="text" v-model="comment" id="comment-content" class="comment-write" cols="30" rows="10" placeholder="老铁，秀秀你的嘴皮子"></textarea>
@@ -66,14 +64,13 @@
                     <div class="comment" v-for="key in comments" v-if="key.parent == -1">
                         <div class="comment-title">
                             <h4>{{key.user_name}}</h4>
-                            <span><a href="#send-comments" @click="reply(key.id, key.user_name)">[回复]</a></span>
+                            <span><a href="#send-comments" @click="replyComment(key.id, key.user_name)">[回复]</a></span>
                             <span>{{key.ctime}}</span>
                         </div>
                         <div class="comment-content">{{key.comments}}</div>
                         <div class="comment-reply" v-for="item in comments" v-if="key.id == item.parent">
                             <div class="comment-title">
                                 <h4>{{item.user_name}} {{item.option}}</h4>
-                                <span><a href="#send-comments" onclick="reply(item.id, item.user_name)">[回复]</a></span>
                                 <span>{{item.ctime}}</span>
                             </div>
                             <div class="comment-content">{{item.comments}}</div>

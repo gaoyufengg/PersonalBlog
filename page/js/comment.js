@@ -10,7 +10,9 @@ var sendComments = new Vue({
         total: '0',
         comments: [
             {blog_id: '',parent: '', parent_name:'', user_name :'', ctime: '', comments: '', option: '', reply: ''}
-        ]
+        ],
+        reply: '-1',
+        replyName: '0'
     },
     created(){
         this.changeCode();
@@ -18,6 +20,7 @@ var sendComments = new Vue({
     },
     methods: {
         sendComment(){
+            // 验证码认证
             var self = this;
             this.commentCode = this.commentCode.toUpperCase();
             this.rightCode = this.rightCode.toUpperCase();
@@ -26,22 +29,35 @@ var sendComments = new Vue({
                 return;
             }
 
-            var bid = -10;
+            var searchUrlParams = location.search.indexOf('?') > -1 ? location.search.split('?')[1] : '';
+            if(!searchUrlParams){
+                return;
+            }
+            var bid = -1;
+            if(searchUrlParams.split('=')[0] == 'bid'){
+                try{
+                    bid = parseInt(searchUrlParams.split('=')[1])
+                }catch(e){
+                    console.log(e)
+                }
+            };
 
-            var reply = document.getElementById('reply').value;
-            var replyName = document.getElementById('reply-name').value;
+            // var reply = document.getElementById('reply').value;
+            // var replyName = document.getElementById('reply-name').value;
             axios({
                 method: 'get',
-                url: `/addComment?id=${bid}&parent=${reply}&parentName=${replyName}&name=${this.name}&email=${this.email}&content=${this.comment}`
-            }).then(function(res){
-                console.log(res)
+                url: `/addComment?id=${bid}&parent=${this.reply}&parentName=${this.replyName}&name=${this.name}&email=${this.email}&content=${this.comment}`
+            }).then((res)=>{
+                // console.log(res)
+                this.reply = -1;
+                this.replyname = 0;
                 alert('评论成功');
                 self.getComments()
             }).catch(function(err){
                 console.log(err)
             })
         },
-        // 验证码
+        // 切换验证码
         changeCode(){
             var self = this;
             axios({
@@ -87,9 +103,9 @@ var sendComments = new Vue({
                 console.log('请求失败')
             });
         },
-        reply(commentId, userName){
-            document.getElementById('reply').value = commentId;
-            document.getElementById('reply-name').value = userName;
+        replyComment(commentId, userName){
+            this.reply = commentId;
+            this.reply.name = userName;
         }
         
     }
